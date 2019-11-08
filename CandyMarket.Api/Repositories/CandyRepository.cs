@@ -8,7 +8,7 @@ using Dapper;
 
 namespace CandyMarket.Api.Repositories
 {
-    public class CandyRepository : ICandyRepository
+    public class CandyRepository : Candy, ICandyRepository
     {
         string _connectionString = "Server=localhost;Database=CandyMarket;Trusted_Connection=True;";
 
@@ -33,19 +33,20 @@ namespace CandyMarket.Api.Repositories
                                values (@name,@type,@flavor,@isExpired)";
 
                 //var trainer = db.QueryFirst<Candy>(sql, parameters);
-                return db.Execute(sql,newCandy) == 1;
+                return db.Execute(sql, newCandy) == 1;
             }
         }
 
-            public bool EatCandy(int candyIdToDelete)
+        public bool EatCandy(int candyIdToDelete)
         {
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"delete
                             from CandyMarket
-                            where [name] = @name";
+                            where [id] = @candyIdToDelete";
 
-                return db.Execute(sql, new { name }) == 1;
+                return db.Execute(sql, new { candyIdToDelete }) >= 1;
             }
         }
+    }
 }
