@@ -32,7 +32,6 @@ namespace CandyMarket.Api.Repositories
                                output inserted.*
                                values (@name,@type,@flavor,@isExpired)";
 
-                //var trainer = db.QueryFirst<Candy>(sql, parameters);
                 return db.Execute(sql, newCandy) == 1;
             }
         }
