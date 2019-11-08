@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import './Home.scss';
-// import candyData from '../data/candyData';
+import candyData from '../data/candyData';
 
 class Home extends Component {
   state = {
     displayCandy: []
   }
   
-  // getCandy = () => {
-  //   //make api call
-  //   //setState with results
-  //   candyData.getCandy().then((values) => {
-  //     let myNewValues = [...values];
-  //     this.setState({displayCandy: myNewValues});
+  getCandy = () => {
+    //make api call
+    //setState with results
+    candyData.getCandy().then((candy) => {
+      let myNewValues = [...candy];
+      this.setState({displayCandy: myNewValues});
   
-  //   }).catch((error) => {
-  //     console.log("it broke: ", error);
-  //   })
-  // }
+    }).catch((error) => {
+      console.log("it broke: ", error);
+    })
+  }
   
-  showAllValues = () => {
-    const myValues = [...this.state.displayValues];
-    return myValues.map(value => <div>{value}</div>)
+  showAllCandy = () => {
+    const myValues = [...this.state.displayCandy];
+    return myValues.map(value => <div key={value.id}>{value.name}</div>)
   }
   
   render () {
@@ -29,7 +29,8 @@ class Home extends Component {
     return (
       <div className="Home">
           <h1 className="testTarget">{testText}</h1>
-          {/* {this.getCandy()} */}
+          <button onClick={this.getCandy}>Click Me</button>
+          {this.showAllCandy()}
       </div>
     );
   }
