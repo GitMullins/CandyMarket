@@ -7,11 +7,11 @@ import Home from '../Home/Home';
 import './App.scss';
 import NewCandy from '../newCandy/newCandy';
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => {
-  // props contains Location, Match, and History
-  const routeChecker = props => (authed === false ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/home', state: { from: props.location } }} />);
-  return <Route render={props => routeChecker(props)} />;
-};
+// const PublicRoute = ({ component: Component, authed, ...rest }) => {
+//   // props contains Location, Match, and History
+//   const routeChecker = props => (authed === false ? <Component {...props} {...rest}/> : <Redirect to={{ pathname: '/home', state: { from: props.location } }} />);
+//   return <Route render={props => routeChecker(props)} />;
+// };
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   // props contains Location, Match, and History

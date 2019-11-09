@@ -30,9 +30,10 @@ class Home extends Component {
   render () {
     return (
       <div className="Home">
+          <Link className="btn btn-info" to={{ pathname: '/new'}}>Add New Candy</Link>
+
           {this.showAllCandy()}
           {/* {console.error('render')} */}
-          <Link className="btn btn-info" to={{ pathname: '/new'}}>Add New Candy</Link>
       </div>
     );
   }

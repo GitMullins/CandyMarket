@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import candyData from '../data/candyData';
 
+const stringToBoolean = (string) => {
+  switch(string.toLowerCase().trim()){
+      case "true": case "yes": case "1": return true;
+      case "false": case "no": case "0": case null: return false;
+      default: return Boolean(string);
+  }
+}
+
 const defaultCandy = {
   name: '',
   type: '',
   flavor: '',
-  isExpired: ''
+  isExpired: stringToBoolean('')
 };
 
 class NewCandy extends Component {
@@ -31,9 +39,8 @@ class NewCandy extends Component {
   formSubmit = (e) => {
     e.preventDefault();
     const saveMe = { ...this.state.newCandy };
-    console.error('thing to save', saveMe);
     candyData.postCandy(saveMe)
-      .then(() => this.props.history.push('/home'))
+      .then(() => this.props.history.push('/'))
       // .then(this.redirect)
       .catch(err => console.error('unable to save', err));
   }
@@ -42,6 +49,10 @@ class NewCandy extends Component {
       const { newCandy } = this.state;
     return (
       <div className="newCandy">
+      <div className="btn">
+          <Link className="btn btn-info" to={{ pathname: '/'}}>Go Home</Link>
+        </div>
+
         <h1>New Candy</h1>
         <form onSubmit={this.formSubmit}>
           <div className="form-group">
@@ -91,9 +102,6 @@ class NewCandy extends Component {
 
         <button type="submit" className="btn btn-success">Save New Candy</button>
       </form>
-      <div className="btn">
-          <Link className="btn btn-info" to={{ pathname: '/'}}>Go Home</Link>
-        </div>
       </div>
     );
   }

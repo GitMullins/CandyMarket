@@ -11,7 +11,7 @@ const getCandy = () => new Promise((resolve, reject) => {
     });
 });
 
-const postCandy = newCandy => axios.post(`${baseUrl}.json`, newCandy);
+const postCandy = newCandy => axios.post(`${baseUrl}`, newCandy);
 
 export default {
   getCandy,
