@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.scss';
+import CandyCard from '../CandyCard/CandyCard.js'
 import candyData from '../data/candyData';
 
 class Home extends Component {
   state = {
-    displayCandy: [],
+    allCandy: [],
   }
   
   getCandy = () => {
     candyData.getCandy().then((candy) => {
       let myNewValues = [...candy];
-      this.setState({displayCandy: myNewValues});
+      this.setState({allCandy: myNewValues});
   
     }).catch((error) => {
       console.log("it broke: ", error);
@@ -19,7 +20,7 @@ class Home extends Component {
   }
   
   showAllCandy = () => {
-    const myValues = [...this.state.displayCandy];
+    const myValues = [...this.state.allCandy];
     return myValues.map(value => <div key={value.id}>{value.name}</div>)
   }
 
@@ -28,12 +29,17 @@ class Home extends Component {
   }
   
   render () {
+    const {allCandy} = this.state;
+    const makeCandyCards = allCandy.map(candy => (
+      <CandyCard
+      key={candy.id}
+      candy={candy}
+      getCandy={this.getCandy()}/>
+    ))
     return (
       <div className="Home">
           <Link className="btn btn-info" to={{ pathname: '/new'}}>Add New Candy</Link>
-
-          {this.showAllCandy()}
-          {/* {console.error('render')} */}
+          {makeCandyCards}
       </div>
     );
   }
