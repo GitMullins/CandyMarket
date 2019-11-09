@@ -11,9 +11,12 @@ const getCandy = () => new Promise((resolve, reject) => {
     });
 });
 
-const postCandy = newCandy => axios.post(`${baseUrl}.json`, newCandy);
+const postCandy = newCandy => axios.post(`${baseUrl}`, newCandy);
+
+const eatCandy = candyId => axios.delete(`${baseUrl}/${candyId}/eat`);
 
 export default {
   getCandy,
-  postCandy
+  postCandy,
+  eatCandy
 };
