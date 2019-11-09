@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace CandyMarket.Api.Controllers
 {
     [ApiController]
-    [Route("candy")]
+    [Route("[controller]")]
     public class CandyController : ControllerBase
     {
         private readonly ILogger<CandyController> _logger;

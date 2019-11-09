@@ -5,6 +5,7 @@ import {
 
 import Home from '../Home/Home';
 import './App.scss';
+import NewCandy from '../newCandy/newCandy';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   // props contains Location, Match, and History
@@ -39,6 +40,7 @@ class App extends React.Component {
             <Switch>
               {/* <PublicRoute path="/auth" component={Auth} authed={authed} /> */}
               <PrivateRoute path="/" exact component={Home} authed={authed} testText={testText}/>
+              <PrivateRoute path='/new' exact component={NewCandy} authed={authed} />
             </Switch>
         </Router>
       </div>

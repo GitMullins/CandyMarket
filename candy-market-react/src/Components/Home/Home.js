@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.scss';
 import candyData from '../data/candyData';
 
 class Home extends Component {
   state = {
-    displayCandy: []
+    displayCandy: [],
   }
   
   getCandy = () => {
-    //make api call
-    //setState with results
     candyData.getCandy().then((candy) => {
       let myNewValues = [...candy];
       this.setState({displayCandy: myNewValues});
@@ -23,14 +22,17 @@ class Home extends Component {
     const myValues = [...this.state.displayCandy];
     return myValues.map(value => <div key={value.id}>{value.name}</div>)
   }
+
+  componentDidMount() {
+    this.getCandy();
+  }
   
   render () {
-    const testText = this.props.testText;
     return (
       <div className="Home">
-          <h1 className="testTarget">{testText}</h1>
-          <button onClick={this.getCandy}>Click Me</button>
           {this.showAllCandy()}
+          {/* {console.error('render')} */}
+          <Link className="btn btn-info" to={{ pathname: '/new'}}>Add New Candy</Link>
       </div>
     );
   }
