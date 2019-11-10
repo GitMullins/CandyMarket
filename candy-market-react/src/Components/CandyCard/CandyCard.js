@@ -7,14 +7,10 @@ class CandyCard extends React.Component {
     // drive: driveShape.driveCardShape,
   }
 
-  deleteMe = (e) => {
+  eatCandy = (e) => {
     e.preventDefault();
-    // const { trip, deleteTrip } = this.props;
-    // deleteTrip(trip.id, trip.routeId);
-  }
-
-  eatCandy = (candyId) => {
-    candyData.eatCandy(candyId)
+    const { candy } = this.props;
+    candyData.eatCandy(candy.id)
       .then(() => this.props.getCandy())
       .catch(err => console.error(err, 'unable to delete'));
   }

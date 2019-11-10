@@ -27,19 +27,21 @@ class Home extends Component {
   componentDidMount() {
     this.getCandy();
   }
-  
+
   render () {
     const {allCandy} = this.state;
     const makeCandyCards = allCandy.map(candy => (
       <CandyCard
       key={candy.id}
       candy={candy}
-      getCandy={this.getCandy()}/>
+      getCandy={this.getCandy}/>
     ))
     return (
-      <div className="Home">
+      <div className="Home container">
           <Link className="btn btn-info" to={{ pathname: '/new'}}>Add New Candy</Link>
-          {makeCandyCards}
+          <div className="d-flex row">
+            {makeCandyCards}
+          </div>
       </div>
     );
   }
