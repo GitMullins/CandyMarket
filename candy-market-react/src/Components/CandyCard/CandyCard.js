@@ -23,7 +23,6 @@ class CandyCard extends React.Component {
         <div className="drive-card card">
           <div className="card-body">
             <h5 className="card-title">{candy.name}</h5>
-            {/* <Link className="btn btn-warning" to={editLink}>Edit</Link> */}
             <Link className="btn btn-warning"
             to={{pathname: editLink,
                 state:{
