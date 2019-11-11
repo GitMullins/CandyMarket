@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import candyData from '../data/candyData';
 
+const defaultCandy = {
+  name: '',
+  type: '',
+  flavor: '',
+  isExpired: ''
+};
+
 const stringToBoolean = (string) => {
   switch(string.toLowerCase().trim()){
       case "true": case "yes": case "1": return true;
@@ -10,12 +17,6 @@ const stringToBoolean = (string) => {
   }
 }
 
-const defaultCandy = {
-  name: '',
-  type: '',
-  flavor: '',
-  isExpired: stringToBoolean('')
-};
 
 class NewCandy extends Component {
   state = {
@@ -39,9 +40,9 @@ class NewCandy extends Component {
   formSubmit = (e) => {
     e.preventDefault();
     const saveMe = { ...this.state.newCandy };
+    saveMe.isExpired = stringToBoolean(saveMe.isExpired);
     candyData.postCandy(saveMe)
       .then(() => this.props.history.push('/'))
-      // .then(this.redirect)
       .catch(err => console.error('unable to save', err));
   }
 
