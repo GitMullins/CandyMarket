@@ -15,8 +15,11 @@ const postCandy = newCandy => axios.post(`${baseUrl}`, newCandy);
 
 const eatCandy = candyId => axios.delete(`${baseUrl}/${candyId}/eat`);
 
+const putCandy = (updatedCandy, candyId) => axios.put(`${baseUrl}/${candyId}/donate`, updatedCandy);
+
 export default {
   getCandy,
   postCandy,
-  eatCandy
+  eatCandy,
+  putCandy
 };

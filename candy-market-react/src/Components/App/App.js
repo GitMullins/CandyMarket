@@ -6,6 +6,7 @@ import {
 import Home from '../Home/Home';
 import './App.scss';
 import NewCandy from '../newCandy/newCandy';
+import EditCandy from '../EditCandy/EditCandy.js';
 
 // const PublicRoute = ({ component: Component, authed, ...rest }) => {
 //   // props contains Location, Match, and History
@@ -41,6 +42,7 @@ class App extends React.Component {
               {/* <PublicRoute path="/auth" component={Auth} authed={authed} /> */}
               <PrivateRoute path="/" exact component={Home} authed={authed} testText={testText}/>
               <PrivateRoute path='/new' exact component={NewCandy} authed={authed} />
+              <PrivateRoute path='/edit/:id' component={EditCandy} authed={authed} />
             </Switch>
         </Router>
       </div>
