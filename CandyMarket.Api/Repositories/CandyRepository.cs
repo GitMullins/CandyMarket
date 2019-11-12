@@ -48,18 +48,22 @@ namespace CandyMarket.Api.Repositories
             }
         }
 
-        public bool UpdateCandy(int candyIdToUpdate)
+        public Candy UpdateCandy(Candy updatedCandy, int id)
         {
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"update CandyMarket
-                            set [Name] = @name,
+                            set [Name] = @Name,
                             	[type] = @type,
                             	flavor = @flavor,
                             	isExpired = @isExpired
-                            where [id] = @candyIdToDelete";
+                            output inserted.*
+                            where [id] = @id";
 
-                return db.Execute(sql, new { candyIdToUpdate }) == 1;
+                updatedCandy.Id = id;
+
+                var candy = db.QueryFirst<Candy>(sql,updatedCandy);
+                return candy;
             }
         }
 

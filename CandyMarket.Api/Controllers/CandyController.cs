@@ -47,9 +47,9 @@ namespace CandyMarket.Api.Controllers
         }
 
         [HttpPut("{candyIdToUpdate}/update")]
-        public void Update(int candyIdToUpdate)
+        public void Update(Candy candyToUpdate, int candyIdToUpdate)
         {
-            _repo.UpdateCandy(candyIdToUpdate);
+            _repo.UpdateCandy(candyToUpdate, candyIdToUpdate);
         }
 
         [HttpDelete("{candyIdToDonate}/donate")]
